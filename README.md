@@ -6,4 +6,4 @@ Currently we have
 - checking cli app for java solutions (bash script)
 
 
-If you want something for ivle, checkout [](https://github.com/SwampertX/ivle-downloader)!
+If you want something for ivle, checkout [https://github.com/SwampertX/ivle-downloader]!
