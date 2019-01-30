@@ -25,10 +25,9 @@ problem_folder
 ```
 ## installation instructions (incomplete)
 ```
-(it is a sketch)
-curl -sL https://github.com/SwampertX/nus-scripts/raw/master/codecrunch/check_java
+curl -sL https://github.com/SwampertX/nus-scripts/raw/master/codecrunch/check_java > check_java
 chmod +x check_java
-sudo cp check_java /usr/local/bin/
+sudo mv check_java /usr/local/bin/
 ```
 
 ## Usage
