@@ -34,7 +34,7 @@ sudo cp check_java /usr/local/bin/
 ## Usage
 ```
 cd /path/to/problem_folder
-check problem.java
+check_java problem.java
 ```
 
 ### Credits
