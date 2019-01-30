@@ -27,7 +27,6 @@ problem_folder
 				.....
 		problem.java (solution file)
 ```
-
 ## Usage
 ```
 cd /path/to/problem_folder
