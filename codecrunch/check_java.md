@@ -1,9 +1,10 @@
 # Instructions for check\_java
 
-### Version 0.5 updates
-- added summary messages
-- pass the solution file as argument to facilitate <kbd>Tab</kbd> completion
-- print out the diff message directly on top of saving to a diff file
+### Version 0.6 updates
+- added colour to diff
+- diff is now presented side by side, with user output on the left
+- added "your output" and "expected output" indicators to diff for better usability
+
 ## Installation instructions
 ```
 curl -sL https://github.com/SwampertX/nus-scripts/raw/master/codecrunch/check_java > check_java
@@ -35,4 +36,4 @@ check_java problem.java
 ```
 
 ### Credits
-Prof Henry Chia for the original bash script that is not ready to be run globally.
+CS2040 Profs for the original bash script that was not ready to be run globally.

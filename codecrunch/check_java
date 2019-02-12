@@ -2,9 +2,9 @@
 cd . 
 if [ -z "$1" ]
 then
-	echo "Problem name is required as the first argument."
-	echo "eg: ./check.sh Helloworld"
-	exit 0
+    echo "Problem name is required as the first argument."
+    echo "eg: ./check.sh Helloworld"
+    exit 0
 
 fi
 problem="$1"
@@ -14,36 +14,56 @@ problem=${problem/.java}
 #compiling .java file
 if ! javac $problem.java;
 then
-	echo "Compilation Failed"
-	exit 0;
+    echo "Compilation Failed"
+    exit 0;
 else
-	echo "Compiled $problem.java successfully"
+    echo "Compiled $problem.java successfully"
 fi
 
 #enumerate all .in files in the same directory
 correct_count=0
 total_count=0
+rm -rf ./results
+mkdir results
+# for aesthetics, terminal width
+t_width=$(tput cols)
+tba1=`expr $t_width / 2 - 10`
+tba2=`expr $t_width / 2 - 16`
+echo tba1
+echo tba2
+touch temp
+echo "Your output" >>temp
+printf '%*s' "$tba1" >> temp
+echo "|Expected output" >> temp
+printf '%*s' "$tba2" >> temp
+header=$(cat temp)
+rm temp
+
 for i in ./input/*.in
 do
-	tc_name=${i:8}
-	tc_name_len=${#tc_name}
-	let "tc_name_len -= 3"
-	tc_name=${tc_name:0:$tc_name_len}
-	tc_num=${tc_name:(-1)}
-	java $problem < $i > ${i/.in/.o}
+    # declare tc_name, tc_num 
+    tc_name=${i:8}
+    tc_name_len=${#tc_name}
+    let "tc_name_len -= 3"
+    tc_name=${tc_name:0:$tc_name_len}
+    tc_num=${tc_name:(-1)}
 
-	let "total_count+=1"
-	results=$( diff ${i/.in/.o} ./output/"$tc_name.out" > ${i/.in/.diff})
-	if [ $? -eq 0 ]     #check if there is a difference between the two files
-	then
-		echo "Test Case $tc_num: Correct"
-		rm ${i/.in/.o} ${i/.in/.diff}
-		let "correct_count+=1"
-	else
-		echo
-		echo "Test case $tc_num: Incorrect"
-		cat ${i/.in/.diff} 
-		echo
-	fi
+    # dump output and diff files into results folder
+    java $problem < $i > ./results/"$tc_name.o"
+    results=$( diff --color --width=$t_width -y ./results/"$tc_name.o" ./output/"$tc_name.out" > ./results/"$tc_name.diff")
+
+    # displaying results, tally counts 
+    if [ $? -eq 0 ]     #check for differences between the two files
+    then
+        echo "Test Case $tc_num: Correct"
+        rm ./results/"$tc_name.o" ./results/"$tc_name.diff"
+        let "correct_count+=1"
+    else
+        echo "Test case $tc_num: Incorrect"
+        echo $header | cat - ./results/"$tc_name.diff" > temp && mv temp ./results/"$tc_name.diff"
+        head ./results/"$tc_name.diff"
+        echo
+    fi
+    let "total_count+=1"
 done
 echo "End of judging. $correct_count correct out of $total_count."
