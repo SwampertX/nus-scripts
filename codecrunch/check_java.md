@@ -1,9 +1,7 @@
 # Instructions for check\_java
 
-### Version 0.6 updates
-- added colour to diff
-- diff is now presented side by side, with user output on the left
-- added "your output" and "expected output" indicators to diff for better usability
+### Version 0.7 updates
+- fixed some bugs 
 
 ## Installation instructions
 ```

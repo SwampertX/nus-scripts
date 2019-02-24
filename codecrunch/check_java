@@ -29,8 +29,6 @@ mkdir results
 t_width=$(tput cols)
 tba1=`expr $t_width / 2 - 10`
 tba2=`expr $t_width / 2 - 16`
-echo tba1
-echo tba2
 touch temp
 echo "Your output" >>temp
 printf '%*s' "$tba1" >> temp
