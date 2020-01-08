@@ -4,11 +4,10 @@
 - fixed some bugs 
 
 ## Installation instructions
-```
+```bash
 curl -sL https://github.com/SwampertX/nus-scripts/raw/master/codecrunch/check_java > check_java
 chmod +x check_java
 sudo mv check_java /usr/local/bin/
-
 ```
 ## Directory structure
 This script is used to check answers for take-home labs by CS2040. This bash file supports the structure as below:
